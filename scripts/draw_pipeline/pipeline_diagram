@@ -1,0 +1,147 @@
+// Pipeline Diagram
+digraph {
+	node [fontname=Helvetica shape=none]
+	unpacker [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>unpacker</B><BR/>SbfosterMidasEventUnpackerStage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT'>unpacker_class</TD><TD ALIGN='LEFT'>unpackers::WFD5EventUnpacker</TD></TR>
+    </TABLE>
+    > fillcolor=lightblue style=filled]
+	jitter_correction [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>jitter_correction</B><BR/>wfd5_jitter_correction_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgray style=filled]
+	digitizer_time_alignment [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>digitizer_time_alignment</B><BR/>wfd5_digitizer_time_alignment_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgray style=filled]
+	detector_grouping [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>detector_grouping</B><BR/>detector_grouping_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgray style=filled]
+	fit_rf [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>fit_rf</B><BR/>rf_fit_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgreen style=filled]
+	identify_peaks [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>identify_peaks</B><BR/>identify_peak_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgray style=filled]
+	identify_pileup_from_peaks [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>identify_pileup_from_peaks</B><BR/>identify_pileup_from_peaks_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgreen style=filled]
+	integrate_around_max_pulse [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>integrate_around_max_pulse</B><BR/>integrate_around_max_pulse_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgray style=filled]
+	identify_max_amp_time [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>identify_max_amp_time</B><BR/>identify_max_amp_time_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgray style=filled]
+	integrate_around_given_time [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>integrate_around_given_time</B><BR/>integrate_around_given_time_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgray style=filled]
+	create_calo_cluster_from_integral [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>create_calo_cluster_from_integral</B><BR/>create_calo_cluster_from_integral_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgreen style=filled]
+	identify_xy_position_from_integral [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>identify_xy_position_from_integral</B><BR/>identify_xy_position_from_integral_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgreen style=filled]
+	fit_with_no_time_constraint [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>fit_with_no_time_constraint</B><BR/>fit_with_no_time_constriant_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgray style=filled]
+	identify_pileup_from_fits [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>identify_pileup_from_fits</B><BR/>identify_pileup_from_fits_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgreen style=filled]
+	identify_time_of_lyso_hit [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>identify_time_of_lyso_hit</B><BR/>identify_time_of_lyso_hit_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgray style=filled]
+	fit_with_time_constraint [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>fit_with_time_constraint</B><BR/>fit_with_time_constraint_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgray style=filled]
+	create_calo_cluster_from_fit [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>create_calo_cluster_from_fit</B><BR/>create_calo_cluster_from_fit_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgreen style=filled]
+	identify_xy_position_from_fit [label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+      <TR><TD COLSPAN="2" BALIGN="CENTER"><B>identify_xy_position_from_fit</B><BR/>identify_xy_position_from_fit_stage</TD></TR>
+      <TR><TD COLSPAN="2" BALIGN="LEFT"><I>Parameters</I></TD></TR>
+      <TR><TD ALIGN='LEFT' COLSPAN='2'>None</TD></TR>
+    </TABLE>
+    > fillcolor=lightgreen style=filled]
+	unpacker -> jitter_correction
+	jitter_correction -> digitizer_time_alignment
+	digitizer_time_alignment -> detector_grouping
+	detector_grouping -> fit_rf
+	detector_grouping -> identify_peaks
+	detector_grouping -> integrate_around_max_pulse
+	detector_grouping -> fit_with_no_time_constraint
+	identify_peaks -> identify_pileup_from_peaks
+	integrate_around_max_pulse -> identify_max_amp_time
+	identify_max_amp_time -> integrate_around_given_time
+	integrate_around_given_time -> create_calo_cluster_from_integral
+	integrate_around_given_time -> identify_xy_position_from_integral
+	fit_with_no_time_constraint -> identify_time_of_lyso_hit
+	fit_with_no_time_constraint -> identify_pileup_from_fits
+	identify_time_of_lyso_hit -> fit_with_time_constraint
+	fit_with_time_constraint -> create_calo_cluster_from_fit
+	fit_with_time_constraint -> identify_xy_position_from_fit
+}

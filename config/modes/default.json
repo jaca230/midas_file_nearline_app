@@ -1,10 +1,12 @@
 {
   "plugin_libraries": [
+    "build/lib/libwfd5_pipeline_plugin.so",
     "build/lib/libunpacker_data_products_core.so",
     "build/lib/libmidas_event_unpacker_plugin.so",
     "build/lib/libdata_products.so",
     "build/lib/libunpackers.so",
-    "build/lib/libsbfoster_midas_unpacking_pipeline_plugin.so"
+    "build/lib/libsbfoster_midas_unpacking_pipeline_plugin.so",
+    "build/lib/libwfd5_nearline_pipeline_plugin"
   ],
   "pipeline": [
     {
@@ -13,20 +15,108 @@
       "parameters": {
         "unpacker_class": "unpackers::WFD5EventUnpacker"
       },
-      "next": ["cleanup"]
+      "next": ["jitter_correction"]
     },
     {
-      "id": "cleanup",
-      "type": "ClearProductsStage",
-      "parameters": {
-        "products": [
-          "FC7HeaderCollection",
-          "WFD5ChannelHeaderCollection",
-          "WFD5HeaderCollection",
-          "WFD5WaveformHeaderCollection",
-          "WFD5TraceIntegralCollection"
-        ]
-      },
+      "id": "jitter_correction",
+      "type": "wfd5_jitter_correction_stage",
+      "parameters": {},
+      "next": ["digitizer_time_alignment"]
+    },
+    {
+      "id": "digitizer_time_alignment", 
+      "type": "wfd5_digitizer_time_alignment_stage",
+      "parameters": {},
+      "next": ["detector_grouping"]
+    },
+    {
+      "id": "detector_grouping",
+      "type": "detector_grouping_stage", 
+      "parameters": {},
+      "next": ["fit_rf", "identify_peaks", "integrate_around_max_pulse", "fit_with_no_time_constraint"]
+    },
+    {
+      "id": "fit_rf",
+      "type": "rf_fit_stage",
+      "parameters": {},
+      "next": []
+    },
+    {
+      "id": "identify_peaks",
+      "type": "identify_peak_stage",
+      "parameters": {},
+      "next": ["identify_pileup_from_peaks"]
+    },
+    {
+      "id": "identify_pileup_from_peaks",
+      "type": "identify_pileup_from_peaks_stage",
+      "parameters": {},
+      "next": []
+    },
+    {
+      "id": "integrate_around_max_pulse",
+      "type": "integrate_around_max_pulse_stage",
+      "parameters": {},
+      "next": ["identify_max_amp_time"]
+    },
+    {
+      "id": "identify_max_amp_time",
+      "type": "identify_max_amp_time_stage", 
+      "parameters": {},
+      "next": ["integrate_around_given_time"]
+    },
+    {
+      "id": "integrate_around_given_time", 
+      "type": "integrate_around_given_time_stage",
+      "parameters": {},
+      "next": ["create_calo_cluster_from_integral", "identify_xy_position_from_integral"]
+    },
+    {
+      "id": "create_calo_cluster_from_integral", 
+      "type": "create_calo_cluster_from_integral_stage",
+      "parameters": {},
+      "next": []
+    },
+    {
+      "id": "identify_xy_position_from_integral",
+      "type": "identify_xy_position_from_integral_stage",
+      "parameters": {},
+      "next": []
+    },
+    {
+      "id": "fit_with_no_time_constraint",
+      "type": "fit_with_no_time_constriant_stage",
+      "parameters": {},
+      "next": ["identify_time_of_lyso_hit", "identify_pileup_from_fits"]
+    },
+    {
+      "id": "identify_pileup_from_fits",
+      "type": "identify_pileup_from_fits_stage",
+      "parameters": {},
+      "next": []
+    },
+    {
+      "id": "identify_time_of_lyso_hit",
+      "type": "identify_time_of_lyso_hit_stage",
+      "parameters": {},
+      "next": ["fit_with_time_constraint"]
+    },
+    {
+      "id": "fit_with_time_constraint",
+      "type": "fit_with_time_constraint_stage",
+      "parameters": {},
+      "next": ["create_calo_cluster_from_fit", "identify_xy_position_from_fit"]
+    },
+    {
+      "id": "create_calo_cluster_from_fit",
+      "type": "create_calo_cluster_from_fit_stage",
+      "parameters": {},
+      "next": []
+    },
+    {
+      "id": "identify_xy_position_from_fit",
+      "type": "identify_xy_position_from_fit_stage", 
+      "parameters": {},
       "next": []
     }
   ]

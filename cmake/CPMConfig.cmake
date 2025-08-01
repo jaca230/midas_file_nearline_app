@@ -18,7 +18,8 @@ set(CPM_PACKAGE_LIST
   midas_event_unpacker_plugin           # required by midas event unpackers like sbfoster_miads_event_unpacker_plugin
   DataProducts                          # required by sbfoster unpackers and analyzers using unpacked data products
   Unpackers                             # required by sbfoster unpacking stage
-  sbfoster_midas_event_unpacker_plugin  # not required by subsequent plugins
+  sbfoster_midas_event_unpacker_plugin  # not required by subsequent plugins (in a dependency sense, but produces required data products)
+  wfd5_nearline_pipeline_plugin         # not required by subsequent plugins
 )
 
 # ---------------------- midas_receiver ----------------------
@@ -100,5 +101,13 @@ set(sbfoster_midas_event_unpacker_plugin_REPO   "jaca230/sbfoster_midas_event_un
 set(sbfoster_midas_event_unpacker_plugin_TAG    "PSI_testbeam_august_2025")
 set(sbfoster_midas_event_unpacker_plugin_TARGET "") # Dynamically linked
 set(sbfoster_midas_event_unpacker_plugin_OPTIONS
+  "CMAKE_POSITION_INDEPENDENT_CODE ON"
+)
+
+# ---------------------- wfd5_nearline_pipeline_plugin ----------------------
+set(wfd5_nearline_pipeline_plugin_REPO   "jaca230/wfd5_nearline_pipeline_plugin")
+set(wfd5_nearline_pipeline_plugin_TAG    "main")
+set(wfd5_nearline_pipeline_plugin_TARGET "") #Dynamically linked
+set(wfd5_nearline_pipeline_plugin_OPTIONS
   "CMAKE_POSITION_INDEPENDENT_CODE ON"
 )
