@@ -1,0 +1,33 @@
+{
+  "plugin_libraries": [
+    "build/lib/libunpacker_data_products_core.so",
+    "build/lib/libmidas_event_unpacker_plugin.so",
+    "build/lib/libdata_products.so",
+    "build/lib/libunpackers.so",
+    "build/lib/libsbfoster_midas_unpacking_pipeline_plugin.so"
+  ],
+  "pipeline": [
+    {
+      "id": "unpacker",
+      "type": "SbfosterMidasEventUnpackerStage",
+      "parameters": {
+        "unpacker_class": "unpackers::WFD5EventUnpacker"
+      },
+      "next": ["cleanup"]
+    },
+    {
+      "id": "cleanup",
+      "type": "ClearProductsStage",
+      "parameters": {
+        "products": [
+          "FC7HeaderCollection",
+          "WFD5ChannelHeaderCollection",
+          "WFD5HeaderCollection",
+          "WFD5WaveformHeaderCollection",
+          "WFD5TraceIntegralCollection"
+        ]
+      },
+      "next": []
+    }
+  ]
+}
